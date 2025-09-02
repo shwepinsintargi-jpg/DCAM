@@ -31,24 +31,20 @@ const albums = {
 
 let currentAlbum = null;
 let currentPage = 1;
-const photosPerPage = 4; // 4 photos per page
+const photosPerPage = 4;
 
 function openAlbum(name) {
   currentAlbum = albums[name];
   currentPage = 1;
-
   document.getElementById("album-list").classList.add("hidden");
   document.getElementById("photo-container").classList.remove("hidden");
-
   document.getElementById("album-title").innerText = currentAlbum.title;
-
   showPage();
 }
 
 function showPage() {
   const photoContainer = document.getElementById("photos");
   photoContainer.innerHTML = "";
-
   const start = (currentPage - 1) * photosPerPage;
   const end = start + photosPerPage;
   const pagePhotos = currentAlbum.photos.slice(start, end);
@@ -59,19 +55,23 @@ function showPage() {
     photoContainer.appendChild(img);
   });
 
-  // Hide/show pagination buttons
+  // Show/hide pagination buttons
   document.getElementById("prev-btn").style.display = currentPage === 1 ? "none" : "inline-block";
   document.getElementById("next-btn").style.display = end >= currentAlbum.photos.length ? "none" : "inline-block";
 }
 
 function nextPage() {
-  currentPage++;
-  showPage();
+  if (currentPage * photosPerPage < currentAlbum.photos.length) {
+    currentPage++;
+    showPage();
+  }
 }
 
 function prevPage() {
-  currentPage--;
-  showPage();
+  if (currentPage > 1) {
+    currentPage--;
+    showPage();
+  }
 }
 
 function goBack() {
