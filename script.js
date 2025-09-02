@@ -1,70 +1,86 @@
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
+// Photo data (local photos stored in /photos folder)
+const albums = {
+  dont: {
+    title: "Don’t",
+    photos: [
+      "photos/dont1.jpg",
+      "photos/dont2.jpg",
+      "photos/dont3.jpg",
+      "photos/dont4.jpg",
+      "photos/dont5.jpg",
+      "photos/dont6.jpg",
+      "photos/dont7.jpg",
+      "photos/dont8.jpg",
+      "photos/dont9.jpg",
+      "photos/dont10.jpg"
+    ]
+  },
+  cry: {
+    title: "Cry",
+    photos: [
+      "photos/cry1.jpg",
+      "photos/cry2.jpg",
+      "photos/cry3.jpg",
+      "photos/cry4.jpg",
+      "photos/cry5.jpg",
+      "photos/cry6.jpg",
+      "photos/cry7.jpg",
+      "photos/cry8.jpg",
+      "photos/cry9.jpg",
+      "photos/cry10.jpg"
+    ]
+  },
+  anymore: {
+    title: "Anymore",
+    photos: [
+      "photos/anymore1.jpg",
+      "photos/anymore2.jpg",
+      "photos/anymore3.jpg",
+      "photos/anymore4.jpg",
+      "photos/anymore5.jpg",
+      "photos/anymore6.jpg",
+      "photos/anymore7.jpg",
+      "photos/anymore8.jpg",
+      "photos/anymore9.jpg",
+      "photos/anymore10.jpg"
+    ]
+  },
+  yu: {
+    title: "Yu",
+    photos: [
+      "photos/yu1.jpg",
+      "photos/yu2.jpg",
+      "photos/yu3.jpg",
+      "photos/yu4.jpg",
+      "photos/yu5.jpg",
+      "photos/yu6.jpg",
+      "photos/yu7.jpg",
+      "photos/yu8.jpg",
+      "photos/yu9.jpg",
+      "photos/yu10.jpg"
+    ]
+  }
+};
+
+// Open album and show photos
+function openAlbum(name) {
+  document.getElementById("album-list").classList.add("hidden");
+  document.getElementById("photo-container").classList.remove("hidden");
+
+  const album = albums[name];
+  document.getElementById("album-title").innerText = album.title;
+
+  const photoContainer = document.getElementById("photos");
+  photoContainer.innerHTML = "";
+  album.photos.forEach(url => {
+    const img = document.createElement("img");
+    img.src = url;
+    photoContainer.appendChild(img);
+  });
 }
 
-/* Album buttons */
-#album-list {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 40px;
-}
-
-#album-list button {
-  padding: 12px 24px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-#album-list button:hover {
-  background-color: #45a049;
-}
-
-/* Back button inside album */
-.back-btn {
-  margin-bottom: 15px;
-  padding: 10px 18px;
-  background: #555;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.back-btn:hover {
-  background: #333;
-}
-
-/* Photos container */
-#photos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  justify-items: center;
-}
-
-#photos img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-
-#photos img:hover {
-  transform: scale(1.05);
-}
-
-/* Hide elements */
-.hidden {
-  display: none;
+// Go back to album list
+function goBack() {
+  document.getElementById("album-list").classList.remove("hidden");
+  document.getElementById("photo-container").classList.add("hidden");
 }
