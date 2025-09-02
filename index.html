@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Welcome / Album List -->
+  <!-- Album List -->
   <div id="album-list">
     <button onclick="openAlbum('dont')">Don’t</button>
     <button onclick="openAlbum('cry')">Cry</button>
@@ -16,11 +16,17 @@
     <button onclick="openAlbum('yu')">Yu</button>
   </div>
 
-  <!-- Photo Album Container -->
+  <!-- Photo Container -->
   <div id="photo-container" class="hidden">
     <button class="back-btn" onclick="goBack()">⬅ Back</button>
     <h2 id="album-title"></h2>
     <div id="photos"></div>
+    
+    <!-- Pagination -->
+    <div id="pagination">
+      <button id="prev-btn" onclick="prevPage()">⬅ Prev</button>
+      <button id="next-btn" onclick="nextPage()">Next ➡</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
